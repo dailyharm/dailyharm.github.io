@@ -41,7 +41,7 @@ function getIP() {
       }
     }
   }
-  let url = "/ip.php";
+  let url = "ip.php";
   ajax.open("GET", url, true);
   ajax.send();
 }
