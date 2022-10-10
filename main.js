@@ -37,6 +37,12 @@ function showIp(str) {
     xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         document.getElementById("ip").innerHTML = this.responseText;
+        return;
+      } else if (str.length == true ) {
+        console.log("erreur d'obtention d'ip :"+this.str);
+      } else {
+        // traitement de l'erreur 
+        console.log("that's good !");
       }
   }
   xmlhttp.open("GET", "ip.php?q="+str, true);
