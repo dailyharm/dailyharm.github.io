@@ -28,20 +28,18 @@ function getMyPosition() {
 });
  
 }
-function getIP() {
-  let ajax = new XMLHttpRequest();
-  ajax.onload = function() {
-    if (this.status == 200 ) {
-      let ip=this.response;
-      let reg=new RegExp("^[0-9]{1,3}.+[0-9]{1,3}.+[0-9]{1,3}.+[0-9]{1,3}$");
-      if (reg.test(ip)) {
-        document.getElementById("ip").innerHTML=ip;
-      } else {
-        document.getElementById("ip").innerHTML="Erreur de retour";
+function showIp(str) {
+  if (str.length == 0) {
+    document.getElementById('ip').innerHTML = "";
+    return;
+  } else {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("ip").innerHTML = this.responseText;
       }
-    }
   }
-  let url = "ip.php";
-  ajax.open("GET", url, true);
-  ajax.send();
+  xmlhttp.open("GET", "ip.php?q="+str, true);
+  xmlhttp.send();
+ }
 }
